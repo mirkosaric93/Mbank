@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>M Bank</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+</head>
+<body>
+    <div class="main-start">
+        <img src="./img/MBLogo.png" alt="Logo">
+    </div>
+    
+    <div class="main" id="main">
+        <header class="header">
+            <!-- Navbar -->
+            <div class="navbar">
+                <ul class="nav-items">
+                    <li class="nav-item"><img src="./img/MBLogo.png" alt="Logo"></li>
+                    <li class="nav-item"><a href="#main">Početna</a></li>
+                    <li class="nav-item"><a href="#section--1">Računi</a></li>
+                    <li class="nav-item"><a href="#">Krediti</a></li>
+                    <li class="nav-item"><a href="#">Štednja i investiranje</a></li>
+                    <li class="nav-item"><a href="#">Online Banking</a></li>
+                </ul>
+            </div>
+            <!-- Home -->
+            <div class="home">
+                <h1>Dobrodošli u <strong>M Bank</strong> <br> Vaš Partner za Finansijsku Bezbednost i Uspeh</h1>
+                <p class="styleP">M Bank je tu da vam pomogne ostvariti finansijske ciljeve. Naša posvećenost vašem uspehu i sigurnosti čini nas vašim pouzdanim partnerom. Otkrijte svet finansijskih mogućnosti s nama.</p>
+            </div>
+        </header>
+        
+        <!-- Section -->
+        <section class="section" id="section--1">
+            <div class="line-payment">Računi 💳</div>  <!--Treba da se popuni na ukupnu sirinu tokom scrolla-->
+                <div class="payment-acc">
+                    <h2 class="text-h2">Želim da otvorim...</h2>
+                    
+                    <div class="payment-btn">
+                        <button class="slide-btn" data-category="default" onclick="paymentBtns(this)">
+                            <span>📂</span><br>
+                            <p>Platni račun sa osnovnim uslugama</p>
+                        </button>
+                        <button class="slide-btn" data-category="iRacun" onclick="paymentBtns(this)">
+                            <span>📂</span><br>
+                            <p>iRačun - online račun</p>
+                        </button>
+                        <button class="slide-btn" data-category="young-payment" onclick="paymentBtns(this)">
+                            <span>📂</span><br>
+                            <p>Tekući račun za mlade</p>
+                        </button>
+                    </div>
+
+                    <div class="slider">
+                        <div class="slide other" data-category="start">
+                            <p>Odaberite neke od ponuda koje nudimo za izradu platnih kartica i računa...</p>
+                        </div>
+
+                        <div class="slide" data-category="default">
+                            <h3>Platni račun sa osnovnim uslugama</h3>
+                            <p>Mesečna naknada za vođenje računa 150 dinara <br> Osnovne usluge u okviru računa:</p>
+
+                            <div class="slider-wrapper">
+                                <div class="slider-word">
+                                    <div class="slide-content">
+                                        <h3>1. Upravljanje računom:</h3>
+                                        <p>Otvaranje, vođenje i gašenje platnog računa sa mesečnom naknadom za vođenje računa u iznosu od 150 dinara.</p>
+                                    </div>
+
+                                     <div class="slide-content">
+                                        <h3>2. Uplate i isplata novca</h3>
+                                        <p>Uplata gotovog novca na platni račun i isplata gotovog novca sa platnog računa na šalterima, bankomatima i višenamenskim uređajima.</p>
+                                    </div>
+
+                                    <div class="slide-content">
+                                        <h3>3. Izvršavanje platnih transakcija</h3>
+                                        <p>Direktnim zaduženjem, korišćenjem platne kartice, transferom odobrenja uključujući trajni nalog na osnovu naloga izdatog na šalteru i u okviru elektronskog/mobilnog bankarstva.</p>
+                                    </div>
+
+                                    <div class="slide-content">
+                                        <h3>4. Izdavanje Dina Card platne kartice</h3>
+                                        <p>Dina Card debitna kartica je nacionalna platna kartica uz koju možete plaćati robu i usluge na prodajnim mestima na teritoriji Srbije, plaćati preko interneta na veb sajtovima u zemlji i podizati novac na bankomatima.</p>
+                                    </div> 
+                                </div>
+                                <button id="left-btn" class="arrow">&#8678; </button>
+                                <button id="right-btn" class="arrow">&#8680;</button>
+                                <button class="modal-btn2" onclick="openModal()">Otvori račun</button>
+                            </div> 
+                        </div>
+                    
+
+                        <div class="slide" data-category="iRacun">
+                            <h3>iRačun - online dinarski i devizni račun</h3>
+                            <p>"iRačun u banci predstavlja moderno i efikasno rešenje za upravljanje vašim finansijama. Sa ovim inovativnim servisom, možete pristupiti svojim bankarskim transakcijama i stanju računa bilo gde i bilo kada putem interneta ili mobilnih aplikacija. Uživajte u bržem i praktičnijem načinu praćenja svojih finansija i obavljanja plaćanja bez odlaska u filijalu banke. iRačun donosi sigurnost, praktičnost i kontrolu nad vašim finansijama na vaš dlan."</p>
+                            <button class="modal-btn2" onclick="openModal()">Otvori račun</button>
+                        </div>
+                        
+
+                        <div class="slide" data-category="young-payment"> <!--Umesto young klasa, kopirati propertije-->
+                            <div class="young">
+                                <h3>Tekući račun za mlade:</h3>
+                                <div class="young-img">
+                                    <span>
+                                        <img src="./img/girl-phone.jpg" alt="">
+                                        <p><b>Potpuno besplatno!</b><br>Ukoliko si nezaposlen/a i mlađi/a od 26 godina.</p>
+                                    </span>
+                                    <span>
+                                        <img src="./img/atm.jpg" alt="">
+                                        <p><b>Najbrži bankomati</b><br>Na preko 100 lokacija u Srbiji.</p>
+                                    </span>
+                                    <span>
+                                        <img src="./img/man-card.jpg" alt="">
+                                        <p><b>Tvoja Mastercard debitna kartica</b><br>Moderna i spremna za novog vlasnika.</p>
+                                    </span>
+                                </div>
+                                <button class="modal-btn" onclick="openModal()">Otvori račun</button>
+                            </div>
+                        </div> 
+
+                        <!-- MODAL OPEN PAYMENT -->
+                        <div class="modal-payment">
+                            <div class="overlay"></div>
+                            <div class="modal-create">
+                                <form  >
+                                    <label for="firstName">First name:</label>
+                                    <input type="text" id="firstName" name="firstName">
+                                    <br>
+
+                                    <label for="lasttName">Last name:</label>
+                                    <input type="text" id="lasttName" name="lastName">
+                                    <br>
+
+                                    <p id="bank-acc-label">Bank account:</p>
+                                    <br>
+                                    <input type="text" class="bank-acc" id="bank-account1" maxlength="4" disabled> -
+                                    <input type="text" class="bank-acc" id="bank-account2" maxlength="4" disabled> -
+                                    <input type="text" class="bank-acc" id="bank-account3" maxlength="4" disabled> -
+                                    <input type="text" class="bank-acc" id="bank-account4" maxlength="4" disabled>
+                                    <br>
+
+                                    <button type="submit" id="submitBtn">Create</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </section>
+
+        <section class="section" id="section--2">
+            <div class="line-credit">Krediti 💸</div>
+            <div class="credit">
+                <div class="credit-home">
+                    <h2>"Vaš put do snova, uz naše povoljne kredite."</h2>
+                    <img src="./img/credit.jpg" alt="credit-image">
+                </div>
+                
+                <h2 class="text-h2">Želim da...</h2>
+                <div class="credit-item">
+                    <button data-category="cash-credit">
+                        <span>💰</span>
+                        <p>Dobijem Keš Kredit</p>
+                    </button>
+                    <button data-category="wheel-credit">
+                        <span>🚗</span>
+                        <p>Kupim Vozilo</p>
+                    </button>
+                    <button data-category="refinance-credit">
+                        <span>🔙</span>
+                        <p>Refinansiram Dug</p>
+                    </button>
+                    <button data-category="apartment-credit">
+                        <span>🏢</span>
+                        <p>Kupim Stan</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="section--3">
+            <div class="line">Štednja i investiranje💰</div>
+            <div class="invested">
+                <div class="invested-home">
+                    <img src="./img/invested.jpg" alt="invested-image">
+                    <h2>"Neka vaš novac raste s nama."</h2>
+                </div>
+                
+                <h2 class="text-h2">Želim da investiram/štedim za...</h2>
+                <div class="invested-item">
+                    <span id="school" data-category="school-inv">
+                        <p>Školovanje dece</p>
+                    </span>
+                    <span id="apartment" data-category="apartment-inv">
+                        <p>Dodatne kvadrate</p>
+                    </span>
+                    <span id="insurance" data-category="insurance-inv">
+                        <p>Sigurnost porodice</p>
+                    </span>
+                    <span id="pension" data-category="pension-inv">
+                        <p>Veću penziju</p>
+                    </span>
+                </div>
+
+                <div class="item-selected">
+                    <!-- <p>Odaberite vid štednje ili investicije</p> -->
+                    <p id="school-inv">Školovanje dece: <br> Štednja u banci za obrazovanje je pametan korak ka ostvarenju svojih akademskih ciljeva. Bez obzira da li planirate da finansirate svoje školovanje ili školovanje vaše dece, otvaranje štednog računa u banci može vam pomoći da postignete svoje ciljeve. Uz redovne uplate na štednju, možete obezbediti potrebna sredstva za školarinu, knjige i druge troškove obrazovanja. Plus, štednja u banci donosi i koristi u vidu kamata koje vam mogu pomoći da povećate vašu štednju tokom vremena. Ne čekajte da budućnost dođe - počnite štedeti danas kako biste ostvarili svoje akademske snove sutra.</p>
+                    <!-- <p id="apartment-inv">Dodatne kvadrate: <br>Štednja u banci za kupovinu stana je ključna komponenta vašeg plana za stvaranje stabilne budućnosti i ostvarenje snova o vlastitom domu. Svaka uplata na štedni račun je korak ka ostvarenju tog cilja. Postavljanjem redovnih iznosa sa strane, stvarate finansijsku sigurnost i približavate se danu kada ćete moći da pređete prag svog vlastitog stana. Štednja takođe donosi i prednosti u vidu kamata, što znači da vaš novac raste tokom vremena. Ne odlažite svoje snove o idealnom domu - počnite štedeti danas kako biste ostvarili svoju budućnost sa sigurnošću i udobnošću vlastitog stana.</p> -->
+                    <!-- <p id="insurance-inv">Sigurnost porodice: <br>Štednja u banci za sigurnost porodice je najbolji način da zaštitite svoje najbliže od finansijskih izazova. Imajući sredstva na strani, možete se nositi sa neočekivanim troškovima, pružiti podršku svojoj porodici u hitnim situacijama i obezbediti bolju budućnost za svoje voljene. Štednja takođe osigurava mir uma, znajući da ste spremni za sve izazove koji se pojave. Bez obzira da li štedite za hitne slučajeve, obrazovanje dece ili za penzionisanje, banka vam pruža sigurno i pouzdano mesto za čuvanje vašeg novca. Počnite štedeti danas kako biste obezbedili sigurnu i svetlu budućnost za svoju porodicu.</p> -->
+                    <!-- <p id="pension-inv">Veću penziju: <br> Štednja u banci za penziju je investicija u vašu budućnost bez stresa. Postavljanjem sredstava sa strane sada, stvarate osnovu za bezbrižnu penzionersku fazu života. Svaka uplata je korak ka obezbeđivanju finansijske nezavisnosti i udobnog penzionerskog života u kojem možete uživati u zasluženim godinama. Banka vam pruža siguran način za čuvanje i rast vašeg novca tokom vremena. Ne čekajte da kasnije razmišljate o penziji – počnite štedeti danas kako biste se pripremili za svetlu i bezbrižnu budućnost. Vaša penzija zaslužuje pažnju i planiranje.</p> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Course list -->
+        <div class="line">Zvanična kursna lista 📊</div>
+        <div class="course">
+            <h3>Zvanična kursna lista za X datum</h3>
+            <table class="table">
+                <tr class="row">
+                    <th>Oznaka valute</th>
+                    <th>Naziv zemlje</th>
+                    <th>Važi za</th>
+                    <th>Srednji kurs</th>
+                </tr>
+                <tr class="row">
+                    <td>Primer: EUR</td>
+                    <td>Naziv zemlje: Nemacka</td>
+                    <td>Vazi za: koliko jedinica</td>
+                    <td>srednji kurs: kurs</td>
+                </tr>
+                <tr class="row">
+                    <td>Primer: DIN</td>
+                    <td>Naziv zemlje: Srbija</td>
+                    <td>Vazi za: koliko jedinica</td>
+                    <td>srednji kurs: kurs</td>
+                </tr>
+                <tr class="row">
+                    <td>Primer: EUR</td>
+                    <td>Naziv zemlje: Nemacka</td>
+                    <td>Vazi za: koliko jedinica</td>
+                    <td>srednji kurs: kurs</td>
+                </tr>
+            </table>
+        </div>
+
+        
+        <footer class="footer">
+            <!-- Location(map) -->
+            <div id="map"></div>
+
+            <!-- Address, phone number, email -->
+            <div class="address">
+                <span class="span1"><b>Adresa:</b> <br> <p>Vuka Karadžića BB</p></span>
+                <span class="span2"><b>Email:</b> <br> <a target="_blank" href="mailto:mbank@gmail.com">mbank@gmail.com</a></span>
+                <span class="span3"><b>Telefon:</b> <br> <a href="tel:+381 69 1528160">+381 69 1528160</a></span>
+                <span class="span4"><b>Call Center:</b> <br> <a href="tel:021 2986 200">021 2986 200</a></span>
+                <span class="span5"><b>Kontaktirajte nas.</b> <p>Kontaktirajte nas za pitanja, pomoć ili pridruživanje timu. Mirko Šarić®</p></span>
+            </div>
+        </footer>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
