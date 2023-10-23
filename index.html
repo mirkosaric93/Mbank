@@ -28,9 +28,9 @@
                     <li class="nav-item"><img src="./img/MBLogo.png" alt="Logo"></li>
                     <li class="nav-item"><a href="#main">Početna</a></li>
                     <li class="nav-item"><a href="#section--1">Računi</a></li>
-                    <li class="nav-item"><a href="#">Krediti</a></li>
-                    <li class="nav-item"><a href="#">Štednja i investiranje</a></li>
-                    <li class="nav-item"><a href="#">Online Banking</a></li>
+                    <li class="nav-item"><a href="#section--2">Krediti</a></li>
+                    <li class="nav-item"><a href="#section--3">Štednja i investiranje</a></li>
+                    <li class="nav-item"><a href="onlineBanking.html" target="_blank">Online Banking</a></li>
                 </ul>
             </div>
             <!-- Home -->
@@ -131,25 +131,18 @@
                         <div class="modal-payment">
                             <div class="overlay"></div>
                             <div class="modal-create">
-                                <form  >
-                                    <label for="firstName">First name:</label>
+                                <form  action="">
+
+                                    <label for="firstName">Korisničko ime:</label>
                                     <input type="text" id="firstName" name="firstName">
-                                    <br>
 
-                                    <label for="lasttName">Last name:</label>
-                                    <input type="text" id="lasttName" name="lastName">
-                                    <br>
+                                    <label for="lastName">PIN:</label>
+                    
+                                    <input type="password" id="pin" name="lastName" maxlength="4">
 
-                                    <p id="bank-acc-label">Bank account:</p>
-                                    <br>
-                                    <input type="text" class="bank-acc" id="bank-account1" maxlength="4" disabled> -
-                                    <input type="text" class="bank-acc" id="bank-account2" maxlength="4" disabled> -
-                                    <input type="text" class="bank-acc" id="bank-account3" maxlength="4" disabled> -
-                                    <input type="text" class="bank-acc" id="bank-account4" maxlength="4" disabled>
-                                    <br>
-
-                                    <button type="submit" id="submitBtn">Create</button>
+                                    <input type="submit" id="submitBtn" value="Submit"> 
                                 </form>
+                                <button id="noAccount">Nemate nalog?</button>
                             </div>
                         </div>
 
@@ -158,7 +151,7 @@
         </section>
 
         <section class="section" id="section--2">
-            <div class="line-credit">Krediti 💸</div>
+            <div class="line-credit" id="credit-line">Krediti 💸</div>
             <div class="credit">
                 <div class="credit-home">
                     <h2>"Vaš put do snova, uz naše povoljne kredite."</h2>
@@ -167,28 +160,161 @@
                 
                 <h2 class="text-h2">Želim da...</h2>
                 <div class="credit-item">
-                    <button data-category="cash-credit">
+                    <button data-category="cash-credit" class="dataCatBtn" onclick="creditBtn(this)">
                         <span>💰</span>
                         <p>Dobijem Keš Kredit</p>
                     </button>
-                    <button data-category="wheel-credit">
+                    <button data-category="wheel-credit" class="dataCatBtn" onclick="creditBtn(this)">
                         <span>🚗</span>
                         <p>Kupim Vozilo</p>
                     </button>
-                    <button data-category="refinance-credit">
+                    <button data-category="refinance-credit" class="dataCatBtn" onclick="creditBtn(this)">
                         <span>🔙</span>
                         <p>Refinansiram Dug</p>
                     </button>
-                    <button data-category="apartment-credit">
+                    <button data-category="apartment-credit" class="dataCatBtn" onclick="creditBtn(this)">
                         <span>🏢</span>
                         <p>Kupim Stan</p>
                     </button>
+                </div>
+                <div class="credit-window">
+
+                    <div data-category="cash-credit" class="dataWindow">
+                        <h3>Keš kredit</h3>
+                        <form action="" class="formCredit">
+                            <label for="" class="inlineEl">Unesite vrednost kredita koji želite:</label>
+                            <input type="number" id="numberInputCredit" step="10000" min="0" placeholder="din" max="500000" class="inputCenter">
+                            <p class="stylePform">Maksimalna vrednost keš kredita je 500 000 Dinara</p>
+                            
+                            <label for="" class="inlineEl">Izaberite broj rata:</label>
+                            <input type="number" max="72" id="installmentCredit" step="3" class="inputCenter" placeholder="meseca">
+                            <label for="" class="inlineEl">Broj računa:</label>
+                            <div class="numberCard">
+                                <input type="text" id="payment-numberCredit1" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberCredit2" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberCredit3" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberCredit4" class="paymentNum" maxlength="4">
+                            </div>
+                            
+
+                            <div id="output" class="output">
+                                <span>Vrednost kredita: <b class="valueCredit"></b></span>
+                                <span>Procenat kamatne stope: <b class="interest-percentageCredit"></b></span>
+                                <span>Vrednost mesečne rate: <b class="interest-monthCredit"></b></span>
+                                <span>Ukupna vrednost kredita: <b class="interest-brutoCredit"></b></span>
+                            </div>
+
+                            <div class="btnParent">
+                                <button id="updateButton">Potvrdi</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+
+                    <div data-category="wheel-credit" class="dataWindow">
+                        <h3>Kredit za Vozilo</h3>
+                        <form action="" class="formWheel">
+                            <label for="" class="inlineEl">Unesite vrednost kredita koji želite:</label>
+                            <input type="number" id="numberInputWheel" step="10000" min="0" max="800000" class="inputCenter" placeholder="din">
+                            <p class="stylePform">Maksimalna vrednost keš kredita je 800 000 Dinara</p>
+                            
+                            <label for="" class="inlineEl">Izaberite broj rata:</label>
+                            <input type="number" max="72" id="installmentWheel" value="" step="3" class="inputCenter" placeholder="meseca">
+                            
+                            <label for="" class="wheel-price inlineEl">Unesite vrednost vozila, mi ćemo vam izračunati učešće koje morate dati za kupovinu:</label>
+                            <input type="number" id="wheel-price" step="100" class="inputCenter">
+                            
+                            <label for="" class="inlineEl">Broj računa:</label>
+                            <div class="numberCard">
+                                <input type="text" id="payment-numberWheel1" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberWheel2" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberWheel3" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberWheel4" class="paymentNum" maxlength="4">
+                            </div>
+
+                            <div id="output" class="output">
+                                <span>Vrednost kredita: <b class="valueWheel"></b></span>
+                                <span>Procenat kamatne stope: <b class="interest-percentageWheel"></b></span>
+                                <span>Vrednost mesečne rate: <b class="interest-monthWheel"></b></span>
+                                <span>Ukupna vrednost kredita: <b class="interest-brutoWheel"></b></span>
+                            </div>
+
+                            <div class="btnParent">
+                                <button id="updateButton">Potvrdi</button>
+                            </div> 
+                        </form>
+                    </div>
+
+                    <div data-category="refinance-credit" class="dataWindow">
+                        <h3>Refinansirajte kredit</h3>
+                        <form action="" class="formRefinance">
+                            <label for="" class="inlineEl">Unesite vrednost kredita koji želite:</label>
+                            <input type="number" id="numberInputRefinance" step="10000" min="0" max="500000" class="inputCenter" placeholder="din">
+                            <!-- <p class="styleP">Maksimalna vrednost keš kredita je 500 000 Dinara</p> -->
+
+                            <label for="" class="inlineEl">Izaberite broj rata:</label>
+                            <input type="number" max="72" id="installmentRefinance" value="" step="3" class="inputCenter" placeholder="meseca">
+                        
+                            <label for="" class="inlineEl">Broj računa:</label>
+                            <div class="numberCard">
+                                <input type="text" id="payment-numberRefinance1" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberRefinance2" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberRefinance3" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberRefinance4" class="paymentNum" maxlength="4">
+                            </div>
+
+                            <div id="output" class="output">
+                                <span>Vrednost kredita: <b class="valueRefinance"></b></span>
+                                <span>Procenat kamatne stope: <b class="interest-percentageRefinance"></b></span>
+                                <span>Vrednost mesečne rate: <b class="interest-monthRefinance"></b></span>
+                                <span>Ukupna vrednost kredita: <b class="interest-brutoRefinance"></b></span>
+                            </div>
+
+                            <div class="btnParent">
+                                <button id="updateButton">Potvrdi</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div data-category="apartment-credit" class="dataWindow">
+                        <h3>Kredit za stan / kuću</h3>
+                        <form action="" class="formApartment">
+                            <label for="" class="inlineEl">Unesite vrednost kredita koji želite:</label>
+                            <input type="number" id="numberInputApartment" step="10000" min="0" max="1000000" class="inputCenter">
+                            <p class="stylePform">Maksimalna vrednost keš kredita je 1 000 000 Dinara</p>
+
+                            <label for="" class="inlineEl">Izaberite broj rata:</label>
+                            <input type="number" max="240" id="installmentApartment" value="" step="6" class="inputCenter">
+
+                            <label for="" class="wheel-price inlineEl">Unesite vrednost stana/kuće koju želite da kupite, mi ćemo vam izračunati učešće koje morate dati za kupovinu:</label>
+                            <input type="number" id="apartment-priceApartment" step="1000" maxlength="10" class="inputCenter">
+                            
+                            <label for="" class="inlineEl">Broj računa:</label>
+                            <div class="numberCard">
+                                <input type="text" id="payment-numberApartment1" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberApartment2" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberApartment3" class="paymentNum" maxlength="4"> -
+                                <input type="text" id="payment-numberApartment4" class="paymentNum" maxlength="4">
+                            </div>
+
+                            <div id="output" class="output">
+                                <span>Vrednost kredita: <b class="valueApartment"></b></span>
+                                <span>Procenat kamatne stope: <b class="interest-percentageApartment"></b></span>
+                                <span>Vrednost mesečne rate: <b class="interest-monthApartment"></b></span>
+                                <span>Ukupna vrednost kredita: <b class="interest-brutoApartment"></b></span>
+                            </div>
+
+                            <div class="btnParent">
+                                <button id="updateButton">Potvrdi</button>
+                            </div> 
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
 
         <section class="section" id="section--3">
-            <div class="line">Štednja i investiranje💰</div>
+            <div class="line-saving">Štednja i investiranje💰</div>
             <div class="invested">
                 <div class="invested-home">
                     <img src="./img/invested.jpg" alt="invested-image">
@@ -197,58 +323,57 @@
                 
                 <h2 class="text-h2">Želim da investiram/štedim za...</h2>
                 <div class="invested-item">
-                    <span id="school" data-category="school-inv">
+                    <span id="school" data-category="school-inv" onclick="investedBtn(this)" class="spanClipPath">
                         <p>Školovanje dece</p>
                     </span>
-                    <span id="apartment" data-category="apartment-inv">
+                    <span id="apartment" data-category="apartment-inv" onclick="investedBtn(this)" class="spanClipPath">
                         <p>Dodatne kvadrate</p>
                     </span>
-                    <span id="insurance" data-category="insurance-inv">
+                    <span id="insurance" data-category="insurance-inv" onclick="investedBtn(this)" class="spanClipPath">
                         <p>Sigurnost porodice</p>
                     </span>
-                    <span id="pension" data-category="pension-inv">
+                    <span id="pension" data-category="pension-inv" onclick="investedBtn(this)" class="spanClipPath">
                         <p>Veću penziju</p>
                     </span>
                 </div>
 
                 <div class="item-selected">
-                    <!-- <p>Odaberite vid štednje ili investicije</p> -->
-                    <p id="school-inv">Školovanje dece: <br> Štednja u banci za obrazovanje je pametan korak ka ostvarenju svojih akademskih ciljeva. Bez obzira da li planirate da finansirate svoje školovanje ili školovanje vaše dece, otvaranje štednog računa u banci može vam pomoći da postignete svoje ciljeve. Uz redovne uplate na štednju, možete obezbediti potrebna sredstva za školarinu, knjige i druge troškove obrazovanja. Plus, štednja u banci donosi i koristi u vidu kamata koje vam mogu pomoći da povećate vašu štednju tokom vremena. Ne čekajte da budućnost dođe - počnite štedeti danas kako biste ostvarili svoje akademske snove sutra.</p>
-                    <!-- <p id="apartment-inv">Dodatne kvadrate: <br>Štednja u banci za kupovinu stana je ključna komponenta vašeg plana za stvaranje stabilne budućnosti i ostvarenje snova o vlastitom domu. Svaka uplata na štedni račun je korak ka ostvarenju tog cilja. Postavljanjem redovnih iznosa sa strane, stvarate finansijsku sigurnost i približavate se danu kada ćete moći da pređete prag svog vlastitog stana. Štednja takođe donosi i prednosti u vidu kamata, što znači da vaš novac raste tokom vremena. Ne odlažite svoje snove o idealnom domu - počnite štedeti danas kako biste ostvarili svoju budućnost sa sigurnošću i udobnošću vlastitog stana.</p> -->
-                    <!-- <p id="insurance-inv">Sigurnost porodice: <br>Štednja u banci za sigurnost porodice je najbolji način da zaštitite svoje najbliže od finansijskih izazova. Imajući sredstva na strani, možete se nositi sa neočekivanim troškovima, pružiti podršku svojoj porodici u hitnim situacijama i obezbediti bolju budućnost za svoje voljene. Štednja takođe osigurava mir uma, znajući da ste spremni za sve izazove koji se pojave. Bez obzira da li štedite za hitne slučajeve, obrazovanje dece ili za penzionisanje, banka vam pruža sigurno i pouzdano mesto za čuvanje vašeg novca. Počnite štedeti danas kako biste obezbedili sigurnu i svetlu budućnost za svoju porodicu.</p> -->
-                    <!-- <p id="pension-inv">Veću penziju: <br> Štednja u banci za penziju je investicija u vašu budućnost bez stresa. Postavljanjem sredstava sa strane sada, stvarate osnovu za bezbrižnu penzionersku fazu života. Svaka uplata je korak ka obezbeđivanju finansijske nezavisnosti i udobnog penzionerskog života u kojem možete uživati u zasluženim godinama. Banka vam pruža siguran način za čuvanje i rast vašeg novca tokom vremena. Ne čekajte da kasnije razmišljate o penziji – počnite štedeti danas kako biste se pripremili za svetlu i bezbrižnu budućnost. Vaša penzija zaslužuje pažnju i planiranje.</p> -->
+                    <p id="school-inv" data-category="school-inv" class="dispNone invested-desc">Školovanje dece: <br> Štednja u banci za obrazovanje je pametan korak ka ostvarenju svojih akademskih ciljeva. Bez obzira da li planirate da finansirate svoje školovanje ili školovanje vaše dece, otvaranje štednog računa u banci može vam pomoći da postignete svoje ciljeve. Uz redovne uplate na štednju, možete obezbediti potrebna sredstva za školarinu, knjige i druge troškove obrazovanja. Plus, štednja u banci donosi i koristi u vidu kamata koje vam mogu pomoći da povećate vašu štednju tokom vremena. Ne čekajte da budućnost dođe - počnite štedeti danas kako biste ostvarili svoje akademske snove sutra.</p>
+                    <p id="apartment-inv" data-category="apartment-inv" class="dispNone invested-desc">Dodatne kvadrate: <br>Štednja u banci za kupovinu stana je ključna komponenta vašeg plana za stvaranje stabilne budućnosti i ostvarenje snova o vlastitom domu. Svaka uplata na štedni račun je korak ka ostvarenju tog cilja. Postavljanjem redovnih iznosa sa strane, stvarate finansijsku sigurnost i približavate se danu kada ćete moći da pređete prag svog vlastitog stana. Štednja takođe donosi i prednosti u vidu kamata, što znači da vaš novac raste tokom vremena. Ne odlažite svoje snove o idealnom domu - počnite štedeti danas kako biste ostvarili svoju budućnost sa sigurnošću i udobnošću vlastitog stana.</p>
+                    <p id="insurance-inv" data-category="insurance-inv" class="dispNone invested-desc">Sigurnost porodice: <br>Štednja u banci za sigurnost porodice je najbolji način da zaštitite svoje najbliže od finansijskih izazova. Imajući sredstva na strani, možete se nositi sa neočekivanim troškovima, pružiti podršku svojoj porodici u hitnim situacijama i obezbediti bolju budućnost za svoje voljene. Štednja takođe osigurava mir uma, znajući da ste spremni za sve izazove koji se pojave. Bez obzira da li štedite za hitne slučajeve, obrazovanje dece ili za penzionisanje, banka vam pruža sigurno i pouzdano mesto za čuvanje vašeg novca. Počnite štedeti danas kako biste obezbedili sigurnu i svetlu budućnost za svoju porodicu.</p>
+                    <p id="pension-inv" data-category="pension-inv" class="dispNone invested-desc">Veću penziju: <br> Štednja u banci za penziju je investicija u vašu budućnost bez stresa. Postavljanjem sredstava sa strane sada, stvarate osnovu za bezbrižnu penzionersku fazu života. Svaka uplata je korak ka obezbeđivanju finansijske nezavisnosti i udobnog penzionerskog života u kojem možete uživati u zasluženim godinama. Banka vam pruža siguran način za čuvanje i rast vašeg novca tokom vremena. Ne čekajte da kasnije razmišljate o penziji – počnite štedeti danas kako biste se pripremili za svetlu i bezbrižnu budućnost. Vaša penzija zaslužuje pažnju i planiranje.</p>
                 </div>
             </div>
         </section>
 
         <!-- Course list -->
-        <div class="line">Zvanična kursna lista 📊</div>
+        <div class="line-course">Zvanična kursna lista 📊</div>
         <div class="course">
-            <h3>Zvanična kursna lista za X datum</h3>
+            <h3>Zvanična kursna lista za <p id="currentDate"></p></h3>
             <table class="table">
                 <tr class="row">
                     <th>Oznaka valute</th>
                     <th>Naziv zemlje</th>
                     <th>Važi za</th>
-                    <th>Srednji kurs</th>
+                    <th>Vrednost u DIN</th>
                 </tr>
-                <tr class="row">
-                    <td>Primer: EUR</td>
-                    <td>Naziv zemlje: Nemacka</td>
-                    <td>Vazi za: koliko jedinica</td>
-                    <td>srednji kurs: kurs</td>
+                <tr class="row russia">
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
                 </tr>
-                <tr class="row">
-                    <td>Primer: DIN</td>
-                    <td>Naziv zemlje: Srbija</td>
-                    <td>Vazi za: koliko jedinica</td>
-                    <td>srednji kurs: kurs</td>
+                <tr class="row usa">
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
                 </tr>
-                <tr class="row">
-                    <td>Primer: EUR</td>
-                    <td>Naziv zemlje: Nemacka</td>
-                    <td>Vazi za: koliko jedinica</td>
-                    <td>srednji kurs: kurs</td>
+                <tr class="row euro">
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
+                    <td><span class="loader"></span></td>
                 </tr>
             </table>
         </div>

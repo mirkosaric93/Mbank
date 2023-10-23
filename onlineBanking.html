@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+
+    <title>M Bank Online Banking</title>
+
+</head>
+<body>
+    <div class="onlineBanking">
+        <div id="imgLogoOnline">
+            <img src="./img/MBLogo.png" alt="">
+        </div>
+        <div class="logInBtn">
+            <button id="existing">Da li imate otvoren račun?</button>
+            <button id="creatingNew">Da li tek treba da otvorite račun?</button>
+        </div>
+
+        <div class="openedProfile">
+            <form action="">
+                <label for="">Korisničko ime:</label>
+                <input type="text" id="userNameLogIn">
+
+                <label for="">PIN:</label>
+                <input type="password" maxlength="4" id="pinLogIn">
+
+                <button id="logInBtn">Log in!</button>
+                <button id="backBtn">🔙</button>
+            </form>
+        </div>
+
+        <div class="toCreateProfile">
+            <form>
+                <label for="">Korisničko ime:</label>
+                <input type="text" id="creatingUserName">
+
+                <label for="">PIN:</label>
+                <input type="password" maxlength="4" id="pinCreate">
+
+                <label for="">Ponovi PIN:</label>
+                <input type="password" maxlength="4" id="pinReCreate">
+
+                <label for="">Email:</label>
+                <input type="email" id="createEmail">
+
+                <label id="bank-acc-label">Bank account:</label>
+                <div class="bankAccNum">
+                    <input type="text" class="bank-acc" id="bank-account1" maxlength="4" disabled>
+                    <input type="text" class="bank-acc" id="bank-account2" maxlength="4" disabled>
+                    <input type="text" class="bank-acc" id="bank-account3" maxlength="4" disabled>
+                    <input type="text" class="bank-acc" id="bank-account4" maxlength="4" disabled>
+                </div>
+                <button id="createBtn">Create Account!</button>
+                <button id="backBtn">🔙</button>
+            </form>
+        </div>
+
+
+        <div class="onlineBankingForm">
+
+            <div class="headerBanking"> 
+                <div id="welcome">Dobrodosli IME</div>
+                <div id="currentDate">Datum Trenutni</div>
+            </div>
+
+            <div class="currMoneyGeneral">
+                <div id="currentMoneyText">Trenutno stanje na vašem računu:</div>
+                <div id="currentMoney">Stanje novca</div>
+            </div>
+
+            <div class="transfers">
+                    <div class="table-container">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Date:</th>
+                              <th>Name:</th>
+                              <th>Value:</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <!-- <tr>
+                              <td>/</td>
+                              <td>/</td>
+                              <td>/</td>
+                            </tr> -->
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            <div class="formTransfer">
+                <div>
+                    <label for="">Broj racuna na koji se prebacuje:</label>
+                    <input type="text" placeholder="enter a payment number...">
+                </div>
+                <div>
+                    <label for="">Vrednost:</label>
+                    <input type="text" placeholder="enter a value...">
+                </div>
+                <button id="transferBtn">Transfer</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="./scriptLog.js"></script>
+</body>
+</html>
