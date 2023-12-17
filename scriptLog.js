@@ -130,7 +130,11 @@ creatingProfile.addEventListener('click', function(e){
         toCreateProfile.style.display = 'none';
         createAndExistBtns.style.display = 'none';
         imgLogo.style.display = 'none';
-        onlineBankingForm.style.display = 'block';
+        setTimeout(()=> {
+            onlineBankingForm.style.display = 'block';
+            setInterval(()=>onlineBankingForm.style.opacity = '1',500)
+        }, 1000)
+        
 
         document.querySelector('#welcome').textContent = data.userName;
         document.querySelector('#currentDate').textContent = new Date().toDateString();
@@ -154,7 +158,10 @@ logInBtn.addEventListener('click', function(e){
                 toCreateProfile.style.display = 'none';
                 createAndExistBtns.style.display = 'none';
                 imgLogo.style.display = 'none';
-                onlineBankingForm.style.display = 'block';
+                setTimeout(()=> {
+                    onlineBankingForm.style.display = 'block';
+                    setInterval(()=>onlineBankingForm.style.opacity = '1',500)
+                }, 1000)
                 
                 document.querySelector('#welcome').textContent = dat.userName;
                 document.querySelector('#currentDate').textContent = new Date().toDateString();

@@ -1,9 +1,12 @@
 //POCETNA SLIKA PREKO EKRANA
 
+const mainMenu = document.querySelector('.main');
+mainMenu.style.display = 'none';
 window.addEventListener('load', ()=>{
    const mainEl = document.querySelector('.main-start');
    if(mainEl){
     mainEl.remove();
+    mainMenu.style.display = 'block';
    }
 });
 window.addEventListener('scroll', () => {
@@ -310,3 +313,34 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 let marker = L.marker([45.18608870928669, 19.80387268438132]).addTo(map);
+
+//------------------------------------------------------------------
+const formMain = document.querySelector('#submitBtn');
+formMain.addEventListener('onclick', function(e){
+    e.preventDefault();
+    console.log('ok je')
+    const username = document.querySelector('#firstName').value;
+    const pin = document.querySelector('#pin').value;
+
+    fetch(`https://6534d4d5e1b6f4c59046f640.mockapi.io/users`)
+    .then(response => response.json())
+    .then(data => {
+        data.forEach((dat) =>{
+            if(username === dat.username && pin === dat.pin){
+                window.location.href = 'google.com'
+            }
+        })
+    })
+})
+
+function handleOpenMenu(){
+    const menuOpened = document.querySelector('.nav-itemsHamburger');
+    const btnOpen = document.querySelector('.hamburgerBtn');
+    if(btnOpen.textContent === '☰'){
+        btnOpen.textContent = 'X';
+        menuOpened.style.display = 'block';
+    }else{
+        btnOpen.textContent = '☰';
+        menuOpened.style.display = 'none';
+    }
+}

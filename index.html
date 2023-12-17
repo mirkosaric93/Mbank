@@ -18,14 +18,15 @@
 <body>
     <div class="main-start">
         <img src="./img/MBLogo.png" alt="Logo">
+        <span class="loader"></span>
     </div>
     
     <div class="main" id="main">
         <header class="header">
             <!-- Navbar -->
             <div class="navbar">
+                <img src="./img/MBLogo.png" alt="Logo" class="navbarLogo">
                 <ul class="nav-items">
-                    <li class="nav-item"><img src="./img/MBLogo.png" alt="Logo"></li>
                     <li class="nav-item"><a href="#main">Početna</a></li>
                     <li class="nav-item"><a href="#section--1">Računi</a></li>
                     <li class="nav-item"><a href="#section--2">Krediti</a></li>
@@ -33,6 +34,25 @@
                     <li class="nav-item"><a href="onlineBanking.html" target="_blank">Online Banking</a></li>
                 </ul>
             </div>
+
+            <div class="hamburgerNavBar">
+                <img src="./img/MBLogo.png" alt="Logo" class="mobileLogo">
+                <div>
+                    <button class="hamburgerBtn" onclick=handleOpenMenu()>☰</button>
+                    
+                    <div class="navbarHamburger">
+                        <ul class="nav-itemsHamburger">
+                            <li class="nav-item-ham"><a href="#main">Početna</a></li>
+                            <li class="nav-item-ham"><a href="#section--1">Računi</a></li>
+                            <li class="nav-item-ham"><a href="#section--2">Krediti</a></li>
+                            <li class="nav-item-ham"><a href="#section--3">Štednja i investiranje</a></li>
+                            <li class="nav-item-ham"><a href="onlineBanking.html" target="_blank">Online Banking</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+
             <!-- Home -->
             <div class="home">
                 <h1>Dobrodošli u <strong>M Bank</strong> <br> Vaš Partner za Finansijsku Bezbednost i Uspeh</h1>
@@ -131,7 +151,7 @@
                         <div class="modal-payment">
                             <div class="overlay"></div>
                             <div class="modal-create">
-                                <form  action="">
+                                <form  action="" id="logInFormMain">
 
                                     <label for="firstName">Korisničko ime:</label>
                                     <input type="text" id="firstName" name="firstName">
