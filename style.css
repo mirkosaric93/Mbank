@@ -1185,7 +1185,7 @@ th{
         align-items: center;
     }
     .slide{
-        padding: 1em;
+        padding-top: 2em;
         display: none;
         font-size: 0.7rem;
     }
@@ -1194,10 +1194,11 @@ th{
     }
     .slide h3{
         padding-bottom: 0.5rem;
+        padding-top: 1.5rem;
     }
     .young{
         font-size: 0.8rem;
-        max-width: 400px;
+        max-width: 350px;
         /* width: 100vw; */
     }
     .young h3{
@@ -1207,10 +1208,11 @@ th{
     .young-img span img{
         /* width: 120px; */
         height: 80px;
+        width: 80px;
         border-radius: 50%;
     }
     .young-img span p{
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
     .modal-create{
         width: 250px;
@@ -1231,14 +1233,14 @@ th{
         height: 180px;
     }
     .dataCatBtn p{
-        font-size: 0.7rem;
+        font-size: 0.6rem;
     }
     .dataCatBtn span{
-        font-size: 1rem;
+        font-size: 0.5rem;
     }
     .credit-item button{
         margin: 0;
-        height: 120px;
+        height: 100px;
     }
     .invested-home img{
         width: 300px;
@@ -1275,4 +1277,39 @@ th{
         height: 200px;
         width: 50%;
     }
+    .row{
+        font-size: 0.6rem;
+    }
+    .logInBtn button{
+        font-size: 0.7rem;
+    }
+    .openedProfile,
+    .toCreateProfile{
+        max-width: 300px;
+        margin: auto;
+    }
+    #creatingUserName,
+    #userNameLogIn{
+        width: 180px;
+    }
+    #pinCreate,
+    #pinReCreate,
+    #pinLogIn{
+        width: 120px;
+    }
+    #createEmail{
+        width: 200px;
+    }
+    .onlineBankingForm{
+        width: 100%;
+        margin-left: 0;
+        font-size: 0.7rem;
+    }
+    .formTransfer div input{
+        font-size: 0.7rem;
+    }
+    #transferBtn,
+    #logOut{
+    font-size: 0.7rem;
+}
 }
