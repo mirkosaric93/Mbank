@@ -344,3 +344,166 @@ function handleOpenMenu(){
         menuOpened.style.display = 'none';
     }
 }
+
+const apiUrl = 'https://6534d4d5e1b6f4c59046f640.mockapi.io/users';
+const confirmButtonCredit = document.querySelector('#cashCreditBtn');
+const wheelConfirmBtnCredit = document.querySelector('#wheelCreditBtn');
+const refinanceConfirmBtnCredit = document.querySelector('#refinanceCreditBtn');
+const apartmentConfirmBtnCredit = document.querySelector('#apartmentCreditBtn');
+
+
+async function fetchData(){
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Došlo je do greške prilikom dobijanja podataka:', error);
+        throw error;
+    }
+}
+
+async function updateUserData(numberOfCard, cashCreditValue) {
+  try {
+    // Dobijanje podataka iz API-ja
+    const data = await fetchData();
+
+    // Pronalaženje korisnika na osnovu broja kartice
+    const userToUpdate = data.find(user => user.cardNumber === numberOfCard);
+
+    if (!userToUpdate) {
+      console.error('Korisnik nije pronađen.');
+      return;
+    }
+
+    // Ažuriranje vrednosti svojstva moneyValue
+    userToUpdate.moneyValue = Number(userToUpdate.moneyValue) + Number(cashCreditValue);
+    const transferObj = {
+        date: new Date().toDateString(),
+        name: userToUpdate.userName,
+        value: cashCreditValue
+    }
+    userToUpdate.transfers.push(transferObj);
+
+    // Asinhrono slanje ažuriranih podataka na server (simulacija PUT zahteva)
+    await fetch(`${apiUrl}/${userToUpdate.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(userToUpdate),
+    });
+
+    console.log('Podaci o korisniku ažurirani:', userToUpdate);
+  } catch (error) {
+    console.error('Došlo je do greške:', error);
+  }
+}
+
+// function handleCredits(e, pin1, pin2, pin3, pin4, cashValue,installment){
+//     e.preventDefault();
+//     const cashCreditValue = document.querySelector('#'+cashValue).value;
+//     const installment = document.querySelector('#'+installment);
+//     const numberCard1 = document.querySelector('#'+pin1);
+//     const numberCard2 = document.querySelector('#'+pin2);
+//     const numberCard3 = document.querySelector('#'+pin3);
+//     const numberCard4 = document.querySelector('#'+pin4);
+//     const numberOfCard = Number(numberCard1.value+numberCard2.value+numberCard3.value+numberCard4.value);
+
+//     if(cashCreditValue.value < 0 && numberOfCard.length < 0) return;
+//     updateUserData(numberOfCard, cashCreditValue);
+
+//     cashCreditValue.value = '';
+//     installment.value = '';
+//     numberCard1.value = '';
+//     numberCard2.value = '';
+//     numberCard3.value = '';
+//     numberCard4.value = '';
+// }
+// confirmButtonCredit.addEventListener('click', handleCredits(e, 'payment-numberCredit1', 'payment-numberCredit2', 'payment-numberCredit3', 'payment-numberCredit4', 'numberInputCredit', 'installmentCredit'));
+
+
+confirmButtonCredit.addEventListener('click', function(e){
+    e.preventDefault();
+
+    const cashCreditValue = document.querySelector('#numberInputCredit').value;
+    const installment = document.querySelector('#installmentCredit');
+    const numberCard1 = document.querySelector('#payment-numberCredit1');
+    const numberCard2 = document.querySelector('#payment-numberCredit2');
+    const numberCard3 = document.querySelector('#payment-numberCredit3');
+    const numberCard4 = document.querySelector('#payment-numberCredit4');
+    const numberOfCard = Number(numberCard1.value+numberCard2.value+numberCard3.value+numberCard4.value);
+    if(cashCreditValue.value < 0 && numberOfCard.length < 0) return;
+
+    updateUserData(numberOfCard, cashCreditValue);
+
+    cashCreditValue.value = '';
+    installment.value = '';
+    numberCard1.value = '';
+    numberCard2.value = '';
+    numberCard3.value = '';
+    numberCard4.value = '';
+});
+
+wheelConfirmBtnCredit.addEventListener('click', function(e){
+    e.preventDefault();
+
+    const cashCreditValue = document.querySelector('#numberInputWheel').value;
+    const installment = document.querySelector('#installmentWheel');
+    const numberCard1 = document.querySelector('#payment-numberWheel1');
+    const numberCard2 = document.querySelector('#payment-numberWheel2');
+    const numberCard3 = document.querySelector('#payment-numberWheel3');
+    const numberCard4 = document.querySelector('#payment-numberWheel4');
+    const numberOfCard = Number(numberCard1.value+numberCard2.value+numberCard3.value+numberCard4.value);
+    if(cashCreditValue.value < 0 && numberOfCard.length < 0) return;
+    updateUserData(numberOfCard, cashCreditValue);
+
+    cashCreditValue.value = '';
+    installment.value = '';
+    numberCard1.value = '';
+    numberCard2.value = '';
+    numberCard3.value = '';
+    numberCard4.value = '';
+});
+
+refinanceConfirmBtnCredit.addEventListener('click', function(e){
+    e.preventDefault();
+
+    const cashCreditValue = document.querySelector('#numberInputRefinance').value;
+    const installment = document.querySelector('#installmentRefinance');
+    const numberCard1 = document.querySelector('#payment-numberRefinance1');
+    const numberCard2 = document.querySelector('#payment-numberRefinance2');
+    const numberCard3 = document.querySelector('#payment-numberRefinance3');
+    const numberCard4 = document.querySelector('#payment-numberRefinance4');
+    const numberOfCard = Number(numberCard1.value+numberCard2.value+numberCard3.value+numberCard4.value);
+    if(cashCreditValue.value < 0 && numberOfCard.length < 0) return;
+    updateUserData(numberOfCard, cashCreditValue);
+
+    cashCreditValue.value = '';
+    installment.value = '';
+    numberCard1.value = '';
+    numberCard2.value = '';
+    numberCard3.value = '';
+    numberCard4.value = '';
+});
+
+apartmentConfirmBtnCredit.addEventListener('click', function(e){
+    e.preventDefault();
+
+    const cashCreditValue = document.querySelector('#numberInputApartment').value;
+    const installment = document.querySelector('#installmentApartment');
+    const numberCard1 = document.querySelector('#payment-numberApartment1');
+    const numberCard2 = document.querySelector('#payment-numberApartment2');
+    const numberCard3 = document.querySelector('#payment-numberApartment3');
+    const numberCard4 = document.querySelector('#payment-numberApartment4');
+    const numberOfCard = Number(numberCard1.value+numberCard2.value+numberCard3.value+numberCard4.value);
+    if(cashCreditValue.value < 0 && numberOfCard.length < 0) return;
+    updateUserData(numberOfCard, cashCreditValue);
+
+    cashCreditValue.value = '';
+    installment.value = '';
+    numberCard1.value = '';
+    numberCard2.value = '';
+    numberCard3.value = '';
+    numberCard4.value = '';
+});

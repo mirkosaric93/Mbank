@@ -136,10 +136,6 @@ body{
 .nav-items >.nav-item:last-child > a{
     border-right: none;
 }
-.nav-items li:not(:first-child){
-    /* padding-top: 2em; */
-    /* border-right: 1px solid white; */
-}
 .nav-items li a{
     transition: all 0.3s;
 }
@@ -729,7 +725,7 @@ h1 strong{
     align-items: center;
     height: 4em;
 }
-#updateButton{
+.updateButton{
     font-size: 2em;
     font-weight: bold;
     background: none;
@@ -737,7 +733,7 @@ h1 strong{
     cursor: pointer;
     transition: all 0.5s ease;
 }
-#updateButton:hover{
+.updateButton:hover{
     background: #333333;
     border: 1px solid #f0f0f0;
     color: white;
@@ -1062,6 +1058,13 @@ th{
     background-color: rgb(234, 49, 49);
     color: white;
 }
+.containerCardNum{
+    text-align: center;
+    text-decoration: underline;
+}
+#bankNumber{
+    color: white;
+}
 
 @media screen and (max-width: 900px){
     .nav-items{
@@ -1107,9 +1110,6 @@ th{
     }
 }
 @media screen and (max-width: 600px){
-    .nav-items{
-        
-    }
     .hamburgerNavBar{
         display: flex;
     }

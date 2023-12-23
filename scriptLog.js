@@ -143,11 +143,13 @@ creatingProfile.addEventListener('click', function(e){
 })
 
 //OPEN EXIST PROFILE
+const tableData = document.querySelector('#appendTableData');
 logInBtn.addEventListener('click', function(e){
     e.preventDefault();
 
     const logInUser = document.querySelector('#userNameLogIn').value;
     const logInPin = document.querySelector('#pinLogIn').value;
+    // document.querySelector('appendTableData').innerHTML = '';
 
     fetch(`https://6534d4d5e1b6f4c59046f640.mockapi.io/users`)
     .then(response => response.json())
@@ -166,7 +168,37 @@ logInBtn.addEventListener('click', function(e){
                 document.querySelector('#welcome').textContent = dat.userName;
                 document.querySelector('#currentDate').textContent = new Date().toDateString();
                 document.querySelector('#currentMoney').textContent = dat.moneyValue;
+                document.querySelector('#bankNumber').textContent += dat.cardNumber;
+                
+                const dataTransfer = dat.transfers;
+                dataTransfer.forEach(obj=>{
+                    const tr = document.createElement('tr');
+                    for(const key in obj){
+                        const td = document.createElement('td');
+                        td.textContent = obj[key];
+                        tr.appendChild(td)
+                    }
+                    tableData.appendChild(tr)
+                })
             }
         })
     })
+})
+
+const logOutBtn = document.querySelector('#logOut');
+logOutBtn.addEventListener('click', function(){
+    // logInBtn.style.display = 'block';
+    onlineBankingForm.style.display = 'none';
+    openedProfile.style.display = 'none';
+    toCreateProfile.style.display = 'none';
+    createAndExistBtns.style.display = 'flex';
+    imgLogo.style.display = 'block';
+    document.querySelector('#pinLogIn').value = '';
+    document.querySelector('#userNameLogIn').value = '';
+    document.querySelector('#pinCreate').value = '';
+    document.querySelector('#pinReCreate').value = '';
+    document.querySelector('#creatingUserName').value = '';
+    document.querySelector('#createEmail').value = '';
+    bankNumber.textContent = '';
+    tableData.textContent = '';
 })
