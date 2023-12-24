@@ -380,7 +380,7 @@ async function updateUserData(numberOfCard, cashCreditValue) {
         name: userToUpdate.userName,
         value: cashCreditValue
     }
-    userToUpdate.transfers.push(transferObj);
+    userToUpdate.transfers.unshift(transferObj);
 
     await fetch(`${apiUrl}/${userToUpdate.id}`, {
       method: 'PUT',
