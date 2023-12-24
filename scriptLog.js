@@ -144,6 +144,60 @@ creatingProfile.addEventListener('click', function(e){
 
 //OPEN EXIST PROFILE
 const tableData = document.querySelector('#appendTableData');
+
+const apiUrl = 'https://6534d4d5e1b6f4c59046f640.mockapi.io/users';
+async function fetchData(){
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Došlo je do greške prilikom dobijanja podataka:', error);
+        throw error;
+    }
+}
+async function transferMoney(valueForSend, recipientNum, sender){
+    try {
+        const data = await fetchData();
+        const userToSend = data.find(user => user.cardNumber === Number(recipientNum));
+        if(!userToSend) console.log('Korisnik nije pronadjen');
+        userToSend.moneyValue += Number(valueForSend);
+        const recipientTransfer = {
+            date: new Date().toDateString(),
+            name: sender.userName,
+            value: valueForSend + '⤵️'
+        }
+        userToSend.transfers.unshift(recipientTransfer);
+
+        sender.moneyValue -= Number(valueForSend);
+        const senderTransfer = {
+            date: new Date().toDateString(),
+            name: userToSend.userName,
+            value: valueForSend + '⤴️'
+        }
+        sender.transfers.unshift(senderTransfer);
+
+
+        await fetch(`${apiUrl}/${userToSend.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(userToSend),
+          });
+
+          await fetch(`${apiUrl}/${sender.id}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(sender),
+          });
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 logInBtn.addEventListener('click', function(e){
     e.preventDefault();
 
@@ -180,6 +234,22 @@ logInBtn.addEventListener('click', function(e){
                     }
                     tableData.appendChild(tr)
                 })
+            //TRANSFER MONEY FROM USER TO OTHER USER
+            const transferBtn = document.querySelector('#transferBtn');
+            transferBtn.addEventListener('click', async function(){
+                const valueForSend = document.querySelector('#moneyToTransfer').value;
+                const recipientNum = document.querySelector('#numberRecipient').value;
+                try {
+                    await transferMoney(valueForSend, recipientNum, dat);
+                    await fetch(`${apiUrl}/${dat.id}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        document.querySelector('#currentMoney').textContent = data.moneyValue;
+                    })
+                } catch (error) {
+                    console.error(error)
+                }
+            })
             }
         })
     })
@@ -201,4 +271,5 @@ logOutBtn.addEventListener('click', function(){
     document.querySelector('#createEmail').value = '';
     bankNumber.textContent = '';
     tableData.textContent = '';
-})
+    window.location.reload(true);
+});

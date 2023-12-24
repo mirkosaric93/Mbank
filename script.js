@@ -365,10 +365,8 @@ async function fetchData(){
 
 async function updateUserData(numberOfCard, cashCreditValue) {
   try {
-    // Dobijanje podataka iz API-ja
     const data = await fetchData();
 
-    // Pronalaženje korisnika na osnovu broja kartice
     const userToUpdate = data.find(user => user.cardNumber === numberOfCard);
 
     if (!userToUpdate) {
@@ -376,7 +374,6 @@ async function updateUserData(numberOfCard, cashCreditValue) {
       return;
     }
 
-    // Ažuriranje vrednosti svojstva moneyValue
     userToUpdate.moneyValue = Number(userToUpdate.moneyValue) + Number(cashCreditValue);
     const transferObj = {
         date: new Date().toDateString(),
@@ -385,7 +382,6 @@ async function updateUserData(numberOfCard, cashCreditValue) {
     }
     userToUpdate.transfers.push(transferObj);
 
-    // Asinhrono slanje ažuriranih podataka na server (simulacija PUT zahteva)
     await fetch(`${apiUrl}/${userToUpdate.id}`, {
       method: 'PUT',
       headers: {
